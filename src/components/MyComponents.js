@@ -1,38 +1,24 @@
 import React from "react";
-
+import DisplayInfor from "./Displayinfor";
+import UserInfor from "./Useinfor";
 class MyComponent extends React.Component{
 
-    state={
-        name:'HarryPhamDev',
-        address: 'Hoi dan IT',
-        age: 26
-    };
-    handledClick=(event) => {
-        console.log(">> click me my button")
-
-        this.setState({
-            name: 'Eric',
-            age: Math.floor((Math.random()*100)+1)
-        })
-
-        // this.setState({
-        //     age: Math.floor((Math.random()*100)+1)
-        // })
+    state = {
+        listUsers:[
+            {id: 1, name: "Hoi Dan It", age: "16"},
+            {id: 1, name: "Eric", age: "26"},
+            {id: 1, name: "HaryPhamDev", age: "69"},
+        ]
     }
-
-    handleOnMoverOver(event){
-        // console.log(event.pageX)
-    }
-
-    //JSX
     render(){
         return(
             <div>
-                My first component
+                <UserInfor />
+                <br /><br />
 
-                My name is {this.state.name} and I'm {this.state.age}
-                <button onMouseOver={this.handleOnMoverOver}>Hover me</button>
-                <button onClick={(event)=> {this.handledClick(event)} }>Click me</button>
+                <DisplayInfor
+                    listUsers={this.state.listUsers}
+                />
             </div>
         );
     }
