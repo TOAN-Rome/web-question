@@ -1,4 +1,6 @@
 import React from "react";
+import './Displayinfor.scss';
+import logo1 from './../logo.svg';
 
 class DisplayInfor extends React.Component {
     
@@ -16,26 +18,32 @@ class DisplayInfor extends React.Component {
         // console.log(listUsers)
         // console.table(listUsers)
         return(
-            <div>
+            <div className="display-infor-container">
+                {/* <img src={logo1} /> */}
                 <div>
-                <span onClick={() => {this.handleShowHide()}}> 
-                {this.state.isShowListUser === true ? "Hide list users:" :"Show list users:"}
-                </span>
+                    <span onClick={() => {this.handleShowHide()}}> 
+                         {this.state.isShowListUser === true ? "Hide list users:" :"Show list users:"}
+                    </span>
             </div>
             { this.state.isShowListUser &&
-            <div>
-                { listUsers.map((user, index) => {
-                    console.log(">>> check map user", user)
+            <>
+                {listUsers.map((user, index) => {
                     
                     return (
-                            <div key={user.id} className={+user.age > 18 ? "green" : "red"}>
-                                <div>My name's {user.name}</div>
-                                <div>My age's {user.age}</div>
+
+                        <div key={user.id} className={+user.age > 18 ? "green" : "red"}>
+                                <div>
+                                    <div>My name's {user.name} </div>
+                                    <div>My age's {user.age} </div>
+                                </div>
+                                <div>
+                                    <button onClick={() => this.props.handleDeleteUser(user.id)}>Delete </button>
+                                </div>
                                 <hr />
                             </div>
                     )
                 })}
-            </div>
+            </>
             }
             </div>
         )
